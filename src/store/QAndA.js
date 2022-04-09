@@ -2,14 +2,16 @@
  * @Author: Geeker
  * @Date: 2022-04-01 19:23:28
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-09 18:16:43
+ * @LastEditTime: 2022-04-09 23:55:15
  * @Description:
  */
+import { async } from '@kangc/v-md-editor/lib/codemirror-editor';
 import api from '../api';
 
 const state = {
     ProtocolData: [],
-    QuestionList: []
+    QuestionList: [],
+    DetialQA: []
 };
 
 const mutations = {
@@ -18,6 +20,9 @@ const mutations = {
     },
     GETQUESLIST: async (state, data) => {
         state.QuestionList = data;
+    },
+    GETDETIALQA: async (state, data) => {
+        state.DetialQA = data;
     }
 };
 
@@ -39,6 +44,13 @@ const actions = {
             }
         })
     },
+    getDetial({commit}, params) {
+        api.getDetial(params).then((json) => {
+            if (json.result) {
+                commit('GETDETIALQA', json.data);
+            }
+        })
+    },
     addNewQues({ commit }, params) {
         return api.addNewQues(params)
     },
@@ -53,6 +65,9 @@ const getters = {
     },
     getQuestionList: (state) => {
         return state.QuestionList;
+    },
+    getDetialQA: (state) => {
+        return state.DetialQA
     }
 }
 const QandA = {

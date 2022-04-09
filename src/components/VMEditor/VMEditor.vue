@@ -2,12 +2,13 @@
  * @Author: Geeker
  * @Date: 2022-04-07 19:07:22
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-09 17:25:53
+ * @LastEditTime: 2022-04-09 23:14:25
  * @Description: 
 -->
 <template>
   <div class="vmeditor">
     <v-md-editor
+      :mode="mode"
       v-model="content"
       :height="`${size.height}px`"
       :width="`${size.width}px`"
@@ -30,10 +31,11 @@ export default {
   props: {
     size: Object,
     propContent: String,
+    mode: String
   },
   data() {
     return {
-      content: "",
+      content: this.propContent,
       html: "",
     };
   },

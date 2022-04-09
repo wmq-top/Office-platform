@@ -2,7 +2,7 @@
  * @Author: Geeker
  * @Date: 2022-04-01 19:29:06
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-09 17:28:56
+ * @LastEditTime: 2022-04-09 23:46:27
  * @Description: 
  */
 const router = require('koa-router')()
@@ -18,6 +18,7 @@ const routers = router
     .post('/getQandA', QandA.getQAndA)
     .post('/getQuesList', QandA.getQuestionList)
     .post('/addNewQues', QandA.addNewQues)
+    .post('/getDetail', QandA.getDetailQA)
     .get('/', async (ctx) => {
         ctx.body = 'Hello World'
     })

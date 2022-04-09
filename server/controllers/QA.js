@@ -2,9 +2,10 @@
  * @Author: Geeker
  * @Date: 2022-04-01 19:31:04
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-09 17:54:49
+ * @LastEditTime: 2022-04-09 23:40:25
  * @Description: 
  */
+const { async } = require('@kangc/v-md-editor/lib/codemirror-editor');
 const QandA = require('../models/QA')
 // const {getToken} = require('../util/getToken');
 const { decode, encode } = require('../util/jwt');
@@ -47,6 +48,21 @@ const QAController = {
             let res = await QandA.addNewQues({
                 ...params,
                 heat: 0,
+            })
+            ctx.response.body = {
+                ...res
+            }
+        } catch (e) {
+            ctx.response.body = {
+                ...e
+            }
+        }
+    },
+    async getDetailQA(ctx) {
+        let params = ctx.request.body;
+        try {
+            let res = await QandA.getDetailQA({
+                ...params,
             })
             ctx.response.body = {
                 ...res

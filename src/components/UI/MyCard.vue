@@ -47,7 +47,7 @@ export default {
       this.$emit("openList", this.dataProps.ids);
     },
     openQuesDetial(item) {
-      this.$router.push({ name: "questiondetial", params: { id: item.Qid }});
+      this.$router.push({ name: "questiondetial", params: { Qid: item.Qid }});
     },
   },
 };

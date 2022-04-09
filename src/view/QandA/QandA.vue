@@ -17,13 +17,19 @@
                 <a-row>
                   <a-col :span="2">题目</a-col>
                   <a-col :span="22">
-                    <a-input v-model:value="quesTitle" placeholder="请输入题目" />
+                    <a-input
+                      v-model:value="quesTitle"
+                      placeholder="请输入题目"
+                    />
                   </a-col>
                 </a-row>
                 <a-row>
                   <a-col :span="2">摘要</a-col>
                   <a-col :span="22">
-                    <a-input v-model:value="quesSummary" placeholder="请输入摘要" />
+                    <a-input
+                      v-model:value="quesSummary"
+                      placeholder="请输入摘要"
+                    />
                   </a-col>
                 </a-row>
               </div>
@@ -31,6 +37,7 @@
                 <a-col :span="2">内容</a-col>
                 <a-col :span="22">
                   <VMEditor
+                    :mode="'editable'"
                     :size="VMSize"
                     @addpicture="addpicIntoStack"
                     @modifyVM="getResultData"
@@ -126,8 +133,9 @@ export default defineComponent({
     const resultValue = ref("");
     const quesTitle = ref("");
     const quesSummary = ref("");
-    const reg = /\!\[Description\]\(\/static\/(?<filename>.*)?\)/g;
-
+    const regOfPic = /\!\[Description\]\(\/static\/(?<filename>.*)?\)/g;
+    const regofCode = /\`\`\`/g;
+    const temp = ref(0);
     const showModal = () => {
       propsForVm.value = "";
       picArr.value = [];
@@ -139,8 +147,12 @@ export default defineComponent({
     };
 
     const handleOk = () => {
-      if (quesTitle.value === '' || quesSummary.value === '' || resultValue.value.length < 30) {
-        message.warning('You should fixed the inputbox');
+      if (
+        quesTitle.value === "" ||
+        quesSummary.value === "" ||
+        resultValue.value.length < 30
+      ) {
+        message.warning("You should fixed the inputbox");
         return;
       }
       modalText.value = "The modal will be closed after two seconds";
@@ -150,22 +162,30 @@ export default defineComponent({
       // 用户可以无限上传文件，然后在MD中删除，那这临时资源就无法释放了，所以维护一下这个
       // 有个问题是同名文件覆盖和误删除，后续需要解决
       setTimeout(() => {
-        const res = resultValue.value.matchAll(reg);
+        const res = resultValue.value.matchAll(regOfPic);
         for (let item of res) {
           let position = picArr.value.indexOf(item.groups.filename);
           picArr.value.splice(position, 1);
         }
+        while (regofCode.exec(resultValue.value)) {
+          temp.value % 2 === 0
+            ? (resultValue.value = resultValue.value.replace("```", "<code>"))
+            : (resultValue.value = resultValue.value.replace("```", "</code>"));
+          temp.value ++ 
+        }
         store.dispatch("QandA/delateStaticFiles", picArr.value);
-        store.dispatch("QandA/addNewQues", {
-          title: quesTitle.value,
-          summary: quesSummary.value,
-          content: resultValue.value,
-        }).then((res) => {
-          store.dispatch("QandA/getQuesList")
-        });
+        store
+          .dispatch("QandA/addNewQues", {
+            title: quesTitle.value,
+            summary: quesSummary.value,
+            content: resultValue.value,
+          })
+          .then((res) => {
+            store.dispatch("QandA/getQuesList");
+          });
         propsForVm.value = "waiting...";
-        quesTitle.value = '';
-        quesSummary.value = '';
+        quesTitle.value = "";
+        quesSummary.value = "";
         picArr.value = [];
         confirmLoading.value = false;
         visible.value = false;
@@ -177,8 +197,8 @@ export default defineComponent({
     };
 
     const cancelModify = () => {
-      reg.lastIndex = 0;
-      if (!reg.test(resultValue.value) && resultValue.value.length < 30) {
+      regOfPic.lastIndex = 0;
+      if (!regOfPic.test(resultValue.value) && resultValue.value.length < 30) {
         visible.value = false;
         propsForVm.value = "null";
         return;
@@ -195,8 +215,8 @@ export default defineComponent({
           // 在这里清空已上传的静态文件
           store.dispatch("QandA/delateStaticFiles", picArr.value);
           propsForVm.value = "null";
-          quesTitle.value = '';
-          quesSummary.value = '';
+          quesTitle.value = "";
+          quesSummary.value = "";
           picArr.value = [];
           visible.value = false;
         },

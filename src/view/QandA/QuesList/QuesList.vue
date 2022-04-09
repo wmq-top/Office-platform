@@ -2,7 +2,7 @@
  * @Author: Geeker
  * @Date: 2022-04-05 20:59:53
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-09 16:13:37
+ * @LastEditTime: 2022-04-10 00:22:58
  * @Description: 
 -->
 <template>
@@ -46,7 +46,7 @@ export default {
   setup(props) {
     const router = useRouter();
     const goDetialPage = () => {
-      router.push({ name: 'questiondetial', params: { id: props.propsData.Qid } })
+      router.push({ name: 'questiondetial', params: { Qid: props.propsData.Qid } })
     }
     return {
       goDetialPage
