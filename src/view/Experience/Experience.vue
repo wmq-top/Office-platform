@@ -1,0 +1,295 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 20:02:06
+ * @LastEditTime: 2022-04-01 19:19:37
+ * @LastEditors: Geeker
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE#
+ * @FilePath: \Vite-vue3\src\view\Experience\Experience.vue
+-->
+<template>
+  <div id="experience">
+    <div class="experience" :class="skinMode">
+      <MainContent />
+      <UserCenter @UserEmit="changeFuncPageState" />
+      <ExTemplate v-if="showFuncPage" :propsdata="propsToAddPage" @closeTempPage="closeFuncPage"/>
+    </div>
+  </div>
+</template>
+
+<script>
+import UserCenter from "./UserCenter/UserCenter.vue";
+import MainContent from "./MainContent/MainContent.vue";
+import ExTemplate from "./ExTemplate/ExTemplate.vue"
+
+import { mapGetters } from 'vuex'
+import './Experience.less'
+
+export default {
+  data() {
+    return {
+      showFuncPage: false,
+      propsToAddPage: {},
+    }
+  },
+  components: {
+    UserCenter,
+    MainContent,
+    ExTemplate,
+  },
+  methods: {
+    changeFuncPageState(data) {
+      this.showFuncPage = true;
+      this.propsToAddPage = data;
+    },
+    closeFuncPage(data) {
+      setTimeout(() => {
+        this.showFuncPage = data;
+      }, 300);
+    }
+  },
+  computed:{
+    ...mapGetters('publicState', ['Language', 'skinMode','SlogenTitle']),
+  }
+};
+</script>
+#experience {
+    .experience {
+      padding-top: 60px;
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      .user-center {
+        position: absolute;
+        right: 14%;
+        width: 20%;
+        height: 300px;
+        margin-top: 10px;
+        border-radius: 10px;
+        float: right;
+        .user-center-title {
+          width: 100%;
+          height: 50px;
+          line-height: 50px;
+          padding-left: 20px;
+          font-size: 16px;
+          text-align: left;
+        }
+        .user-options {
+          width: 90%;
+          margin: -5px auto;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          cursor: pointer;
+        }
+        .svg-font {
+          font-size: 40px;
+        }
+        .svg-tip {
+          text-align: center;
+          display: block;
+          font-size: 12px !important;
+        }
+        .daily-Statistics {
+          width: 90%;
+          margin: 20px auto;
+          height: 80px;
+          border-radius: 5px;
+          .browse-count {
+            width: 49.5%;
+            height: 100%;
+            float: left;
+            font-size: 12px;
+            padding-top: 10px;
+            border-radius: 5px;
+            .td-br {
+              font-size: 14px;
+            }
+          }
+          .daily-split {
+            width: 1px;
+            margin-left: calc(1% - 1px);
+            height: 80%;
+            margin-top: 8px;
+            float: left;
+          }
+          .approve-count {
+            width: 49.5%;
+            height: 100%;
+            float: right;
+            font-size: 12px;
+            padding-top: 10px;
+            border-radius: 5px;
+            .td-br {
+              font-size: 14px;
+            }
+          }
+        }
+        .daily-detial {
+          width: 80%;
+          height: 40px;
+          margin: 15px auto;
+          line-height: 40px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+      .mainContent {
+        position: relative;
+        left: 14%;
+        float: left;
+        width: 51%;
+        .ant-tabs-bar {
+          margin-bottom: 0px;
+        }
+        .experienceSearch input {
+          position: absolute;
+          display: block;
+          z-index: 1;
+          right: 20px;
+          top: 12px;
+          width: 200px;
+          height: 30px;
+          border-radius: 17px;
+          outline: none;
+          padding-left: 15px;
+          padding-bottom: 1px;
+        }
+        .ant-tabs-nav-scroll {
+          float: left;
+        }
+        .ant-tabs-nav .ant-tabs-tab {
+          margin-right: 0;
+          padding: 16px 20px 16px 20px;
+        }
+        .ExListCard-content {
+          width: 100%;
+          height: 83vh;
+          overflow-y: scroll;
+          padding-right: 2px;
+          .ExListCard-item {
+            position: relative;
+            padding: 0 10px;
+            border-bottom: 1px solid rgb(240, 242, 247);
+            width: 100%;
+            border-radius: 2px;
+            background-color: rgb(255, 255, 255);
+            height: 120px;
+            overflow: hidden;
+          }
+          .showDetial {
+            width: 75px;
+            height: 30px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            line-height: 30px;
+            color: rgba(54, 98, 236, 0.6);
+          }
+        }
+        .readPage {
+          position: absolute;
+          top: 52px;
+          left: 0;
+          width: 100%;
+          height: calc(101% - 60px);
+          background-color: #fff;
+        }
+      }
+    }
+    .default {
+      .user-center {
+        background-color: #fff;
+  
+        .daily-Statistics {
+          background-color: rgb(249, 249, 250);
+          .browse-count {
+            background-color: rgb(249, 249, 250);
+          }
+          .daily-split {
+            background-color: rgb(235, 236, 236);
+          }
+          .approve-count {
+            background-color: rgb(249, 249, 250);
+          }
+        }
+        .daily-detial {
+          background-color: rgba(160, 225, 245, 0.5);
+        }
+      }
+      .mainContent {
+        .experienceSearch input {
+          border: 1px solid rgb(74, 113, 238);
+        }
+        .experienceSearch input:focus {
+          border: 2px solid rgb(74, 113, 238);
+        }
+        .ExListCard-content {
+          .ExListCard-item {
+            border-bottom: 1px solid rgb(240, 242, 247);
+  
+            background-color: rgb(255, 255, 255);
+          }
+          .showDetial {
+            color: rgba(54, 98, 236, 0.6);
+          }
+        }
+        .readPage {
+          background-color: #fff;
+        }
+      }
+    }
+    .darkMode {
+      color: white;
+      background-color: rgb(48, 47, 47);
+      .user-center {
+        background-color: rgb(65, 65, 65);
+        .daily-Statistics {
+          background-color: rgb(39, 39, 39);
+          .browse-count {
+            background-color: rgb(39, 39, 39);
+          }
+          .daily-split {
+            background-color: rgb(39, 39, 39);
+          }
+          .approve-count {
+            background-color: rgb(39, 39, 39);
+          }
+        }
+        .daily-detial {
+          background-color: rgba(94, 95, 95, 0.7);
+        }
+      }
+      .mainContent {
+        .ant-tabs-nav {
+          .ant-tabs-tab {
+            color: white;
+          }
+          .ant-tabs-tab-active {
+            color: rgb(61, 161, 255);
+          }
+        }
+        .experienceSearch input {
+          color: black;
+          border: 1px solid rgb(255, 167, 67);
+        }
+        .experienceSearch input:focus {
+          border: 2px solid rgb(255, 167, 67);
+        }
+        .ExListCard-content {
+          background-color: rgb(65, 65, 65);
+          .ExListCard-item {
+            border-bottom: 1px solid rgb(39, 39, 39 );
+            background-color: rgb(65, 65, 65);
+          }
+          .showDetial {
+            color: rgba(196, 205, 233, 0.6);
+          }
+        }
+        .readPage {
+          background-color: rgb(65, 65, 65);
+        }
+      }
+    }
+  }
+

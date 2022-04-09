@@ -1,0 +1,22 @@
+{
+    "com.SearchInApp": "Search In App",
+    "com.SearchInSys": "Search In System",
+    "com.FuncIntroduc": "Func Introduct",
+    "com.ExperienceSharing": "Experience Sharing",
+    "com.NewEmployeeQ&A": "New Employee Q&A",
+    "com.TeamSpecificAutomaticUrging": "Team Specific Auto Urging",
+    "com.TechnicalExchangeForum": "Technical Exchange Forum",
+    "com.TeamMeeting": "Team Meeting",
+    "com.OnlineCoding": "Online Coding",
+    "com.UpcomingSupport": "Upcoming support, please look forward to",
+    "tip.ExperienceSharing": "Learn excellent technical experience and share your wisdom",
+    "tip.NewEmployeeQ&A": "New students are required for entry, teaching through train, and quickly integrate into work",
+    "tip.TeamSpecificAutomaticUrging": "Get your daily plan synchronously. Working with a plan will get you twice the result with half the effort",
+    "tip.TechnicalExchangeForum": "We create software that changes the way we work",
+    "tip.TeamMeeting": "The team is a public project, and an excellent team is an indispensable help to success",
+    "tip.OnlineCoding": "We don't do yard farming. We create value that changes the world",
+    "wds.browsetdCount": "Browse today",
+    "wds.browseydCount": "Browse yesterday",
+    "wds.approvetdCount": "Agree today",
+    "wds.approveydCount": "Yesterday agreed"
+}

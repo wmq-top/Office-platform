@@ -1,0 +1,344 @@
+#drapingbar {
+    width: 100vw;
+    height: 97vh;
+    overflow: hidden;
+    position: absolute;
+}
+.TopContent {
+    z-index: 999 !important;
+}
+.drapingbar {
+    height: 630px;
+    width: 80px;    
+    position: absolute;
+    left: 100px;
+    top: 40px;
+    border-radius: 20px;
+    transition: width 0.6s;
+    overflow: hidden;
+    padding: 20px 15px;
+    z-index: 999;
+    .btn {
+        width: 50px;
+        height: 12px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-around;
+        .btn-item {
+            height: 10px;
+            width: 10px;    
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    }
+    .portrait {
+        width: 210px;
+        height: 50px;
+        margin-top: 15px;
+        .icon {
+            float: left;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .discrib {
+            width:  140px;
+            height: 50px;
+            float: right;
+            text-align: left;
+            line-height: 27px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        .discrib::first-line {
+            font-size: 18px;
+        }
+       
+    }
+    .split-line {
+        width: 100%;
+        height: 1px;
+        margin-top: 15px; 
+    }
+
+    .serverlist {
+        width: 210px;
+        height: 220px;
+        margin-top: 15px;
+        .sever-icon-list {
+            height: 220px;
+            width: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .focus {
+                border-radius: 10px;
+            }
+        }
+        .sever-icon-list li {
+            position: relative;
+            height: 50px    ;
+            width: 210px;
+            cursor: pointer;
+            .tip {
+                width: 3px;
+                height: 40px;
+                border-radius: 1px  ;
+                position: absolute;
+                left: -9px;
+                top: 5px;
+                display: none;
+            }
+            .showTip {
+                display: block;
+            }
+            .icon-item {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                float: left;
+                line-height: 50px;
+            }
+            .list-text {
+                width: 145px;
+                height: 50px;
+                float: right;
+                line-height: 50px;
+                // color: white;
+                font-size: 14px;
+                text-align: left;
+            }
+        }
+
+    }
+
+    .project-list {
+        width: 220px;
+        height: 230px;
+        margin-top: 15px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        .project-icon-list {
+            height: 210px;
+            width: 50px;
+            .focus {
+                border-radius: 10px;
+            }
+        }
+        .project-icon-list li {
+            position: relative;
+            margin-bottom: 10px;
+            height: 50px;
+            width: 50px;
+            transition: width 0.6s;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            .project-item {
+                width: 50px;
+                height: 50px;
+                float: left;
+                line-height: 50px;
+                border-radius: 10px;
+            }
+            .proejct-text {
+                width: 145px;
+                height: 50px;
+                float: right;
+                line-height: 50px;
+                font-size: 14px;
+                text-align: left;
+            }
+        }
+    }
+}
+.drapingbar:hover {
+    width: 240px;
+    .split-line {
+        width: 100%;
+        height: 1px;
+        // background-color: rgb(121, 121, 121);   
+    }
+    .project-icon-list li {
+        border-radius: 10px;
+        width: 210px;
+    }
+}
+.hidenMode {
+    height: 50px;
+}
+.hidenMode:hover {
+    width: 80px;
+}
+
+// focus on here only has color relevant config try to fixed without !important we use it to cover Antd Pseudo class style
+.defaultSkin {
+    .drapingbar {
+        background-color: rgba(31, 30, 11, 0.6);
+        .btn {
+            .red {
+                background-color: rgb(241, 71, 71);
+            }
+            .yellow {
+                background-color: rgb(223, 223, 43);
+            }
+            .green {
+                background-color: rgb(0, 226, 0);
+            }
+        }
+        .portrait {
+            .icon {
+                border: 2px solid gray;
+            background-color: #fff;
+            }
+            .discrib {
+                color: white;
+            }
+        }
+    }
+    .split-line {
+        background-color: rgb(121, 121, 121); 
+    }
+    .serverlist {
+        .sever-icon-list {
+            .focus {
+                background-color: rgba(163, 163, 163, 0.6);
+            }
+        }
+        .sever-icon-list li {
+            .tip {
+                background-color: rgb(255, 128, 24);
+            }
+            .list-text {
+                color: white;
+            }
+            .icon-item {
+                color: rgb(252, 252, 252);
+            }
+        }
+        .sever-icon-list li:hover {
+            .list-text {
+                color: rgb(255, 255, 255);
+            }
+            .icon-item {
+                color: rgb(255, 160, 72);
+            }
+            
+        }
+    }
+    .project-list {
+        .project-icon-list {
+            .focus {
+                background-color: rgba(163, 163, 163, 0.6);
+            }
+        }
+        .project-icon-list li {
+            background-color: rgb(63, 63, 63);
+            .project-item {
+                background-color: rgb(63, 63, 63);
+            }
+            .proejct-text {
+                color: white;
+            }
+            .icon-item {
+                color: white;
+            }
+        }
+
+        .project-icon-list li:hover {
+            background-color: rgb(88, 87, 87);
+            .project-item {
+                background-color: rgb(88, 87, 87);  
+            }
+            .proejct-text {
+                color: rgb(255, 255, 255);
+            }
+            .icon-item {
+                color: rgb(253, 201, 0);
+            }
+        }
+    }
+}
+
+// focus on here only has color relevant config try to fixed without !important we use it to cover Antd Pseudo class style
+.darkMode {
+    .drapingbar {
+        background-color: rgb(255, 255, 255);
+        .btn {
+            .red {
+                background-color: rgb(241, 71, 71);
+            }
+            .yellow {
+                background-color: rgb(240, 240, 39);
+            }
+            .green {
+                background-color: rgb(0, 226, 0);
+            }
+        }
+        .portrait {
+            .icon {
+                border: 2px solid gray;
+            background-color: #fff;
+            }
+            .discrib {
+                color: rgb(29, 28, 28);
+            }
+        }
+    }
+    .split-line {
+        background-color: rgb(121, 121, 121); 
+    }
+    .serverlist {
+        .sever-icon-list {
+            .focus {
+                background-color: rgb(112, 145, 245);
+            }
+        }
+        .sever-icon-list li {
+            .tip {
+                background-color: rgb(255, 128, 24);
+            }
+            .list-text {
+                color: rgb(29, 28, 28);
+            }
+            .icon-item {
+                color: rgb(54, 98, 236);
+            }
+        }
+        .sever-icon-list li:hover {
+            .list-text {
+                color: rgb(255, 255, 255);
+            }
+            .icon-item {
+                color: rgb(252, 252, 252);
+            }
+        }
+    }
+    .project-list {
+        .project-icon-list {
+            .focus {
+                background-color: rgba(255, 254, 254, 1);
+            }
+        }
+        .project-icon-list li {
+            background-color: rgb(228, 228, 228);
+            .proejct-text {
+                color: rgb(59, 59, 59);
+            }
+            .icon-item {
+                color: gray;
+            }
+        }
+        .project-icon-list li:hover {
+            background-color: rgb(196, 192, 192);
+            .project-item {
+                background-color: rgb(194, 192, 192);  
+            }
+            .icon-item {
+                color: white;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,86 @@
+#windowSearch {
+  width: 100%;
+  height: 25vh;
+  position: relative;
+  padding-top: 60px;
+  .windowSearch {
+    .Search-title {
+      font-size: 80px;
+      margin-top: 100px;
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+    .Search-input {
+      margin: auto;
+      width: 600px;
+      position: absolute;
+      left: 50%;
+      top: 130px;
+      margin-left: -300px;
+      // margin-top: 80px;
+      outline: none;
+      input {
+        width: 600px;
+        height: 60px;
+        border-radius: 30px;
+        padding-left: 30px;
+        font-size: 22px;
+      }
+      input:focus {
+        outline: none;
+      }
+      input:focus-visible {
+      outline: none;
+    }
+    }
+    .searchicon {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      right: 20px;
+      top: 7px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .searchicon:hover {
+      font-size: 31px;
+    }
+  }
+  .default {
+    .searchicon {
+      color: rgba(54, 98, 236, 0.9);
+    }
+    .lightfont {
+      color: rgb(212, 212, 212, 0.5);
+    }
+    input {
+      border: 1.5px solid rgba(54, 98, 236, 0.9);
+    }
+    input:focus {
+      border: 2.5px solid rgb(54, 98, 236);
+    }
+    
+    .searchicon:hover {
+      color: rgba(24, 80, 245, 0.9);
+    }
+  }
+  .darkMode {
+    .searchicon {
+      color: rgb(121, 121, 121);
+    }
+    .lightfont {
+      color: rgb(212, 212, 212, 0.5);
+    }
+    input {
+      color: black;
+      border: 1.5px solid rgb(255, 167, 67);
+    }
+    input:focus {
+      border: 2.5px solid rgb(255, 167, 67);
+    }
+    .searchicon:hover {
+      color: rgba(79, 79, 79);
+    }
+  }
+}
+

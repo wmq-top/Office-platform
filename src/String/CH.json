@@ -1,0 +1,22 @@
+{
+    "com.SearchInApp": "在项目中全局搜索",
+    "com.SearchInSys": "在系统中搜索",
+    "com.FuncIntroduc": "功能介绍",
+    "com.ExperienceSharing": "经验分享",
+    "com.NewEmployeeQ&A": "新员工Q&A",
+    "com.TeamSpecificAutomaticUrging": "团队专项自动催办",
+    "com.TechnicalExchangeForum": "技术交流论坛",
+    "com.TeamMeeting": "团队会议",
+    "com.OnlineCoding": "在线编码",
+    "com.UpcomingSupport": "即将支持, 敬请期待",
+    "tip.ExperienceSharing": "学习优秀的技术经验，分享你的智慧",
+    "tip.NewEmployeeQ&A": "新同学入职必备，教学直通车，快速融入工作",
+    "tip.TeamSpecificAutomaticUrging": "同步获取每日计划，有计划的工作会让你事半功倍",
+    "tip.TechnicalExchangeForum": "技术交流论坛我们创造改变工作方式的软件",
+    "tip.TeamMeeting": "团队公共专项，优秀的团队是成功不可或缺的助力",
+    "tip.OnlineCoding": "我们不做码农,我们创造改变世界的价值",
+    "wds.browsetdCount": "今日浏览",
+    "wds.browseydCount": "昨日浏览",
+    "wds.approvetdCount": "今日赞同",
+    "wds.approveydCount": "昨日赞同"
+}

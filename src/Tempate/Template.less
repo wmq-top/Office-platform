@@ -1,0 +1,35 @@
+// 注意不要问为什么不用一个大的样式表来实现换肤,也不要问为什么不引用颜色变量
+// 我按照自己理解的模块概念，一个组件应该包含除了数据逻辑外所有完善的基本结构
+// 我更期望以组件的粒度复用项目
+
+#Template {
+    // 这里不要写样式，id用来圈定每个页面.default 和 .darkMode 的生效范围
+    // 本来想用组件内的scoped,但是不知道为什么不生效
+    .Template {
+        top: 100px;
+        left: 300px;
+        position: relative;
+        width: 500px;
+        height: 200px;
+        // 这里写所有结构相关的样式
+    }
+    .default {
+        color: black;
+        background-color: #fff;
+        // 下面是组件内用到的特殊--颜色--样式
+        div[class='xxx'] {
+            color: red;
+            background-color: blue;
+        }
+
+    }
+    .darkMode {
+        color: white;
+        background-color: black;
+        // 下面是组件内用到的特殊--颜色--样式
+        div[class='xxx'] {
+            color: red;
+            background-color: blue;
+        }
+    }
+}
