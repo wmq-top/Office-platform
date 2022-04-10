@@ -2,13 +2,13 @@
  * @Author: Geeker
  * @Date: 2022-04-07 20:14:57
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-10 01:16:18
+ * @LastEditTime: 2022-04-10 16:10:48
  * @Description: 
 -->
 <template>
   <div id="QuesDetial">
     <div class="QuesDetial" :class="skinMode">
-      <div class="leftDetial">
+      <div class="leftDetial" ref="left">
         <a-tabs v-model:activeKey="activeKey" type="card">
           <a-tab-pane key="1" tab="问题描述">
             <VMEditor ref="editor" :size="VMSize" :mode="'preview'" :propContent="content" />
@@ -17,7 +17,10 @@
           <a-tab-pane key="3" tab="问题解答">Content of Tab Pane 3</a-tab-pane>
         </a-tabs>
       </div>
-      <div class="rightDetial"></div>
+      <div class="rightDetial">
+        <VMEditor :mode="'editable'" :size="{ height: 900}" />
+        <a-button type="primary" :size="'large'" class="subbtn" @click="showRef">发布题解</a-button>
+      </div>
     </div>
   </div>
 </template>
@@ -50,24 +53,28 @@ export default defineComponent({
   computed: {
     ...mapGetters("QandA", ["getDetialQA"]),
     content() {
-      const reg1 = /\<code\>/g  
+      const reg1 = /\<code\>/g
       const reg2 = /\<\/code\>/g
       if (this.getDetialQA.QuesData) {
         while (reg1.exec(this.getDetialQA.QuesData[0].content)) {
           this.getDetialQA.QuesData[0].content =
             this.getDetialQA.QuesData[0].content.replace("<code>", "```");
         }
-        while(reg2.exec(this.getDetialQA.QuesData[0].content)) {
+        while (reg2.exec(this.getDetialQA.QuesData[0].content)) {
           this.getDetialQA.QuesData[0].content =
             this.getDetialQA.QuesData[0].content.replace("</code>", "```");
         }
-        console.log(this.getDetialQA.QuesData[0].content)
         return this.getDetialQA.QuesData[0].content;
       } else {
         return "";
       }
     },
   },
+  methods: {
+    showRef() {
+      alert(this.$refs['left'].clientHeight);
+    }
+  },  
 });
 </script>
 
@@ -112,38 +119,56 @@ export default defineComponent({
     .rightDetial {
       width: 50%;
       height: 100%;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+      .subbtn {
+        position: absolute;
+        bottom: 10px;
+        color: white;
+        right: 30px;
+      }
     }
   }
   .default {
-    background-color: rgb(241, 243, 244);
-    .ant-tabs-tab {
-      background-color: #fff;
+    .leftDetial {
+      * {
+        color: black;
+      }
+      background-color: rgb(241, 243, 244);
+      .ant-tabs-tab {
+        background-color: #fff;
+      }
     }
   }
   .darkMode {
-    background-color: rgb(39, 39, 39);
-    color: white;
-    .ant-tabs-content-holder {
-      background-color: rgb(131, 131, 131);
-      color: white;
-    }
-    .v-md-editor__preview-wrapper {
-      background-color: rgb(131, 131, 131);
-    }
-    .ant-tabs-nav::before {
-      border-bottom: 1px solid rgb(65, 65, 65);
-    }
-    .ant-tabs-tab {
-      color: white;
-      background-color: rgb(94, 94, 94);
-      border: 1px solid rgb(94, 94, 94);
-      border-bottom: 0;
-    }
-    .ant-tabs-tab-active {
-      .ant-tabs-tab-btn {
-        color: wheat;
+    .leftDetial {
+      * {
+        color: white;
       }
-      background-color: rgb(131, 131, 131);
+      background-color: rgb(39, 39, 39);
+      .ant-tabs-content-holder {
+        background-color: rgb(131, 131, 131);
+        color: white;
+      }
+      .v-md-editor__preview-wrapper {
+        background-color: rgb(131, 131, 131);
+      }
+      .ant-tabs-nav::before {
+        border-bottom: 1px solid rgb(65, 65, 65);
+      }
+      .ant-tabs-tab {
+        color: white;
+        background-color: rgb(94, 94, 94);
+        border: 1px solid rgb(94, 94, 94);
+        border-bottom: 0;
+      }
+      .ant-tabs-tab-active {
+        .ant-tabs-tab-btn {
+          color: wheat;
+        }
+        background-color: rgb(131, 131, 131);
+      }
     }
   }
 }
