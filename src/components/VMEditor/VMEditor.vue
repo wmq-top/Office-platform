@@ -2,7 +2,7 @@
  * @Author: Geeker
  * @Date: 2022-04-07 19:07:22
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-10 15:45:06
+ * @LastEditTime: 2022-04-11 20:53:05
  * @Description: 
 -->
 <template>
@@ -10,8 +10,7 @@
     <v-md-editor
       :mode="mode"
       v-model="content"
-      :height="`${size.height}px`"
-      :width="`${size.width}px`"
+      :height="`${height}px`"
       left-toolbar="undo redo clear|h bold italic strikethrough quote tip emoji|ul ol todo-list table horizontal|link image code|save"
       :disabled-menus="[]"
       @change="handleChange"
@@ -29,7 +28,10 @@ import { reactive } from "vue";
 
 export default {
   props: {
-    size: Object,
+    height: {
+      type: Number,
+      default: 600
+    },
     propContent: String,
     mode: String
   },

@@ -2,7 +2,7 @@
  * @Author: Geeker
  * @Date: 2022-03-23 18:59:41
  * @LastEditors: Geeker
- * @LastEditTime: 2022-04-01 19:22:56
+ * @LastEditTime: 2022-04-11 22:23:39
  * @Description: 
  */
 const publicState = {
@@ -14,7 +14,7 @@ const publicState = {
             isPayment: false
         },
         Language: "SimpleChinese",
-        skinMode: "darkMode",  // default darkMode 目前只支持两种我还没想好怎么支持自定义换肤
+        skinMode: "default",  // default darkMode 目前只支持两种我还没想好怎么支持自定义换肤
         SlogenTitle: [
             'Sometimes you Just have to be Confident at that Moment,\r and After that you are Confident all the Time',
             "it's always hard to start, but once you start it will get easy",

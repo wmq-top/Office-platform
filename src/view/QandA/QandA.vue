@@ -4,45 +4,28 @@
       <div class="content">
         <div class="QAleftContent">
           <div>
-            <a-button type="primary" @click="showModal">我要提问</a-button>
-            <a-modal
-              v-model:visible="visible"
-              title="我要提问"
-              :confirm-loading="confirmLoading"
-              @ok="handleOk"
-              @cancel="cancelModify"
-              width="1200px"
-            >
+            <a-button type="primary" @click="showModal" class="addQuesBtn">我要提问</a-button>
+            <a-modal v-model:visible="visible" title="我要提问" :confirm-loading="confirmLoading" @ok="handleOk"
+              @cancel="cancelModify" width="1200px">
               <div class="QAVMContent">
                 <a-row>
                   <a-col :span="2">题目</a-col>
                   <a-col :span="22">
-                    <a-input
-                      v-model:value="quesTitle"
-                      placeholder="请输入题目"
-                    />
+                    <a-input v-model:value="quesTitle" placeholder="请输入题目" />
                   </a-col>
                 </a-row>
                 <a-row>
                   <a-col :span="2">摘要</a-col>
                   <a-col :span="22">
-                    <a-input
-                      v-model:value="quesSummary"
-                      placeholder="请输入摘要"
-                    />
+                    <a-input v-model:value="quesSummary" placeholder="请输入摘要" />
                   </a-col>
                 </a-row>
               </div>
               <a-row>
                 <a-col :span="2">内容</a-col>
                 <a-col :span="22">
-                  <VMEditor
-                    :mode="'editable'"
-                    :size="VMSize"
-                    @addpicture="addpicIntoStack"
-                    @modifyVM="getResultData"
-                    :propContent="propsForVm"
-                  />
+                  <VMEditor :mode="'editable'" :height="height" @addpicture="addpicIntoStack" @modifyVM="getResultData"
+                    :propContent="propsForVm" />
                 </a-col>
               </a-row>
             </a-modal>
@@ -58,54 +41,14 @@
           </div>
         </div>
         <div class="QArightContent">
-          <div
-            v-for="(item, index) in cardProps"
-            :key="index"
-            :class="openList === index ? 'openListCard' : ''"
-          >
-            <my-card
-              :theme="item.theme"
-              :size="1"
-              :dataProps="item.data"
-              @openList="getOpenDetial"
-              :dataList="commonQues[index]"
-            />
+          <div v-for="(item, index) in cardProps" :key="index" :class="openList === index ? 'openListCard' : ''">
+            <my-card :theme="item.theme" :size="1" :dataProps="item.data" @openList="getOpenDetial"
+              :dataList="commonQues[index]" />
           </div>
         </div>
       </div>
-      <div class="BackTop">
-        <FuncListShow
-          :funcList="funcListArr"
-          @backTop="backToTop"
-          @support="support"
-          @using="using"
-          @yes="yes"
-          @no="no"
-          @close="close"
-        >
-          <template #backTop>
-            <svg-icon :name="'backTop'" />
-          </template>
-          <template #support>
-            <svg-icon :name="'support'" />
-          </template>
-          <template #using>
-            <svg-icon :name="'lover'" />
-          </template>
-          <template #yes>
-            <svg-icon :name="'goDown'" />
-          </template>
-          <template #no>
-            <svg-icon :name="'disSupport'" />
-          </template>
-          <template #close>
-            <svg-icon :name="'funcShare'" />
-          </template>
-        </FuncListShow>
-      </div>
       <div></div>
-    </div>
-  </div>
+    </div>  </div>
 </template>
 
 <script>
@@ -171,7 +114,7 @@ export default defineComponent({
           temp.value % 2 === 0
             ? (resultValue.value = resultValue.value.replace("```", "<code>"))
             : (resultValue.value = resultValue.value.replace("```", "</code>"));
-          temp.value ++ 
+          temp.value++
         }
         store.dispatch("QandA/delateStaticFiles", picArr.value);
         store
@@ -244,7 +187,6 @@ export default defineComponent({
   },
   data() {
     return {
-      aa: "backTop",
       cardProps: [
         {
           theme: "blue",
@@ -283,9 +225,7 @@ export default defineComponent({
         { name: "yes" },
         { name: "close" },
       ],
-      VMSize: {
-        height: 600,
-      },
+      height: 600,
     };
   },
   components: {
@@ -324,21 +264,6 @@ export default defineComponent({
     backToTop() {
       this.$refs.QAMainContent.scrollTop = 0;
     },
-    support() {
-      console.log(this.openList);
-    },
-    using() {
-      console.log("using");
-    },
-    yes() {
-      console.log("yes");
-    },
-    no() {
-      console.log("no");
-    },
-    close() {
-      console.log("close");
-    },
     // addpicIntoStack(data) {
     //   console.log(data);
     // }
@@ -349,6 +274,7 @@ export default defineComponent({
 <style lang="less">
 #qanda {
   min-width: 1280px;
+
   .qanda {
     padding-top: 60px;
     width: 100%;
@@ -356,6 +282,7 @@ export default defineComponent({
     overflow: hidden;
     position: relative;
     overflow-y: auto;
+
     .content {
       width: 69.5%;
       height: 80vh;
@@ -363,6 +290,7 @@ export default defineComponent({
       margin-top: 4px;
       border-radius: 50px;
     }
+
     .GoQues {
       width: 30%;
       height: 120px;
@@ -370,6 +298,7 @@ export default defineComponent({
       border-radius: 15px;
       float: left;
     }
+
     .underDiscussion {
       width: 30%;
       height: 120px;
@@ -377,6 +306,7 @@ export default defineComponent({
       border-radius: 15px;
       float: left;
     }
+
     .QAleftContent {
       position: relative;
       width: calc(100% - 355px);
@@ -388,7 +318,7 @@ export default defineComponent({
       .QALeftTop {
         height: 200px;
         width: 100%;
-        margin-top: 130px;
+        margin-top: 0px;
         .QAtitle {
           height: 50px;
           width: 140px;
@@ -398,50 +328,58 @@ export default defineComponent({
           font-weight: 500;
         }
       }
+      .addQuesBtn {
+        margin-top: 30px;
+      }
     }
 
     .QArightContent {
       float: right;
       width: 340px;
       position: relative;
+
       .openListCard {
         position: absolute;
         z-index: 9;
         top: 0;
+
         .specialcard {
           height: 810px;
         }
+
         .card-content {
           height: calc(900px - 64px) !important;
         }
       }
     }
-    .BackTop {
-      right: 36%;
-      bottom: 20px;
-      position: fixed;
-    }
   }
+
   .default {
     background-color: rgb(230, 230, 230);
+
     .QAleftContent {
       background-color: white;
+
       .QALeftTop {
         border-bottom: 1px solid rgb(206, 206, 206);
       }
     }
   }
+
   .darkMode {
     color: white;
     background-color: rgb(39, 39, 39);
+
     .QAleftContent {
       background-color: rgb(68, 68, 68);
+
       .QALeftTop {
         border-bottom: 1px solid rgb(54, 54, 54);
       }
     }
   }
 }
+
 .QAVMContent {
   .ant-row {
     margin-bottom: 15px;

@@ -1,20 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2022-03-15 18:59:22
- * @LastEditTime: 2022-03-28 21:51:51
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-04-11 22:11:36
+ * @LastEditors: Geeker
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \Vite-vue3\src\utils\translate.js
  */
-import axios from 'axios';
-// let Chmap;
-// let Enmap;
-// axios.get('http://localhost:3000/TranslateString').then((res) => {
-//     Chmap = res.data.Chinese;
-//     Enmap = res.data.English;
-//     console.log(res);
-// })
-let Chmap = {
+// import 
+const Chmap = {
     "com.SearchInApp": "在项目中全局搜索",
     "com.SearchInSys": "在系统中搜索",
     "com.FuncIntroduc": "功能介绍",
@@ -48,17 +41,29 @@ let Chmap = {
     "wds.ChooseFile": "选择文件",
     "msg.ExceptTxt": "暂不支持非纯文本文件预解析",
     "wds.writeShare": "写分享",
+    "wds.Confirm": "确认",
+    "wds.Cancel": "取消",
+    "wds.title": "标题",
+    "wds.topic": "主题",
+    "wds.classification": "分类",
     "wds.All": "全部",
     "wds.Fixed": "已完成",
     "wds.Failed": "失败",
     "wds.Delay": "延期",
-    "wds.History":"历史记录",
-    "wds.Plan":"计划",
-    "wds.Func":"功能",
-    "wds.Apply":"答复"
+    "wds.History": "历史记录",
+    "wds.Plan": "计划",
+    "wds.Func": "功能",
+    "wds.Apply": "答复",
+    "wds.PublishAns": "发布解答",
+    "wds.PublishComment": "发布评论",
+    "wds.Resolved": "已解决",
+    "wds.Unresolved": "未解决",
+    "wds.UnderReview": "审核中···",
+    "wds.Reviewed": "已审核",
+    "wds.AuditFailed": "审核未通过"
 }
 
-let Enmap = {
+const Enmap = {
     "com.SearchInApp": "Search In App",
     "com.SearchInSys": "Search In System",
     "com.FuncIntroduc": "Func Introduct",
@@ -92,14 +97,26 @@ let Enmap = {
     "wds.ChooseFile": "Choose File",
     "msg.ExceptTxt": "Non plain text file pre parsing is not supported at present",
     "wds.writeShare": "Write Share",
+    "wds.Confirm": "Confirm",
+    "wds.Cancel": "Cancel",
+    "wds.title": "title",
+    "wds.topic": "topic",
+    "wds.classification": "class",
     "wds.All": "All",
     "wds.Fixed": "Finish",
     "wds.Failed": "Failed",
     "wds.Delay": "Delay",
-    "wds.History":"History",
-    "wds.Plan":"Plan",
-    "wds.Func":"Function",
-    "wds.Apply":"Apply"
+    "wds.History": "History",
+    "wds.Plan": "Plan",
+    "wds.Func": "Function",
+    "wds.Apply": "Apply",
+    "wds.PublishAns": "Publish answers",
+    "wds.PublishComment": "Publish Comment",
+    "wds.Resolved": "Resolved",
+    "wds.Unresolved": "Unresolved",
+    "wds.UnderReview": "Under Review",
+    "wds.Reviewed": "Reviewed",
+    "wds.AuditFailed": "Audit Failed"
 }
 function $t(key, Language) {
     if (Language !== "English") return Chmap[key];
@@ -107,7 +124,4 @@ function $t(key, Language) {
 }
 
 export default $t
-
-
-
 

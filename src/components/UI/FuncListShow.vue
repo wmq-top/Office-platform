@@ -84,7 +84,7 @@ export default {
   border-radius: 50%;
   top: 200px;
   left: 90px;
-  transform: scale(0.8);
+  transform: scale(0.6);
   .center {
     width: 60px;
     height: 60px;
